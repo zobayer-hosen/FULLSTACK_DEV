@@ -1,0 +1,437 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Sora:wght@400;500;600&family=EB+Garamond:wght@400;500&display=swap");
+
+:root {
+  /* Classic Palette */
+  --classic-cream: #f5efe3;
+  --classic-gold: #ca8a04;
+  --classic-brown: #78350f;
+  --classic-border: #e5ddd0;
+
+  /* Modern Palette */
+  --ink: #1f2a37;
+  --muted: #5d6a79;
+  --paper: #f8f3e9;
+  --paper-strong: #efe4d3;
+  --modern: #0f766e;
+  --modern-deep: #0b4f4a;
+  --modern-accent: #ec4899;
+  --line: rgba(31, 42, 55, 0.18);
+  --surface: rgba(255, 255, 255, 0.78);
+  --shadow-soft: 0 12px 26px rgba(23, 33, 48, 0.12);
+  --shadow-card: 0 8px 18px rgba(16, 24, 40, 0.11);
+
+  /* Modern Shadows */
+  --shadow-modern: 0 20px 40px rgba(15, 118, 110, 0.15);
+  --shadow-glow: 0 0 20px rgba(15, 118, 110, 0.1);
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background:
+    radial-gradient(
+      circle at 5% 10%,
+      rgba(15, 118, 110, 0.12),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 95% 90%,
+      rgba(202, 138, 4, 0.12),
+      transparent 38%
+    ),
+    linear-gradient(160deg, #f5efe3 0%, #fbfaf7 58%, #f0f6f5 100%);
+  background-attachment: fixed;
+}
+
+/* Modern Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(31, 42, 55, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--modern);
+  border-radius: 999px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  transition: background 180ms ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--modern-deep);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+h1 {
+  margin: 0 0 20px;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(2rem, 4vw, 2.9rem);
+  letter-spacing: 0.02em;
+  color: var(--ink);
+}
+
+.create-post-section,
+.feed-section {
+  width: min(900px, calc(100% - 40px));
+  margin: 36px auto;
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background:
+    linear-gradient(
+      140deg,
+      rgba(255, 255, 255, 0.84),
+      rgba(255, 255, 255, 0.66)
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 22px,
+      rgba(31, 42, 55, 0.03) 22px,
+      rgba(31, 42, 55, 0.03) 23px
+    );
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(2px);
+}
+
+.create-post-section {
+  max-width: 680px;
+}
+
+.create-post-section form {
+  display: grid;
+  gap: 14px;
+}
+
+input[type="file"],
+input[type="text"] {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid rgba(31, 42, 55, 0.3);
+  border-radius: 10px;
+  background: var(--surface);
+  padding: 12px 14px;
+  font:
+    500 0.98rem/1.4 "Sora",
+    "Trebuchet MS",
+    sans-serif;
+  color: var(--ink);
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+input[type="file"] {
+  padding: 10px;
+}
+
+input[type="text"]::placeholder {
+  color: #778293;
+}
+
+input:focus-visible {
+  outline: none;
+  border-color: var(--modern);
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.18);
+  transform: translateY(-1px);
+}
+
+button[type="submit"] {
+  justify-self: start;
+  border: 0;
+  border-radius: 999px;
+  padding: 11px 22px;
+  font:
+    600 0.95rem/1 "Sora",
+    "Trebuchet MS",
+    sans-serif;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: linear-gradient(115deg, var(--modern), var(--modern-deep));
+  box-shadow: 0 8px 16px rgba(11, 79, 74, 0.3);
+  cursor: pointer;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    filter 180ms ease;
+}
+
+button[type="submit"]:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 11px 20px rgba(11, 79, 74, 0.34);
+}
+
+button[type="submit"]:active {
+  transform: translateY(0);
+}
+
+button[type="submit"]:disabled {
+  opacity: 0.68;
+  cursor: not-allowed;
+}
+
+.feed-section {
+  display: grid;
+  gap: 16px;
+}
+
+.post {
+  display: grid;
+  gap: 10px;
+  border: 1px solid rgba(31, 42, 55, 0.13);
+  border-radius: 14px;
+  padding: 14px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.95),
+    rgba(249, 253, 252, 0.86)
+  );
+  box-shadow: var(--shadow-card);
+  transform-origin: center;
+  animation: cardIn 360ms ease both;
+}
+
+.post:nth-child(2) {
+  animation-delay: 60ms;
+}
+.post:nth-child(3) {
+  animation-delay: 120ms;
+}
+.post:nth-child(4) {
+  animation-delay: 180ms;
+}
+.post:nth-child(5) {
+  animation-delay: 240ms;
+}
+
+.post-image {
+  width: min(100%, 560px);
+  max-width: 100%;
+  border-radius: 10px;
+  border: 1px solid rgba(31, 42, 55, 0.16);
+  object-fit: cover;
+}
+
+.post-caption {
+  margin: 0;
+  color: var(--muted);
+  font:
+    500 0.98rem/1.55 "Sora",
+    "Trebuchet MS",
+    sans-serif;
+}
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.992);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Classic Mode */
+.mode-classic {
+  --ink: var(--classic-brown);
+  --modern: var(--classic-gold);
+  --modern-deep: #9a3412;
+}
+
+.mode-classic h1 {
+  font-family: "EB Garamond", Georgia, serif;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+.mode-classic .create-post-section,
+.mode-classic .feed-section {
+  background: linear-gradient(
+    140deg,
+    rgba(255, 250, 245, 0.92),
+    rgba(250, 245, 240, 0.88)
+  );
+  border: 2px solid var(--classic-border);
+  border-radius: 8px;
+}
+
+.mode-classic input[type="file"],
+.mode-classic input[type="text"] {
+  border: 1.5px solid var(--classic-border);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.6);
+  font-family: Georgia, serif;
+}
+
+.mode-classic button[type="submit"] {
+  background: linear-gradient(115deg, var(--classic-gold), #b8860b);
+  border-radius: 4px;
+  text-transform: none;
+  font-family: Georgia, serif;
+  letter-spacing: 0;
+  box-shadow: 0 4px 10px rgba(202, 138, 4, 0.3);
+}
+
+/* Modern Mode */
+.mode-modern {
+  --modern: #0f766e;
+}
+
+.mode-modern h1 {
+  background: linear-gradient(135deg, var(--modern), var(--modern-deep));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.mode-modern .create-post-section,
+.mode-modern .feed-section {
+  background: linear-gradient(
+    140deg,
+    rgba(255, 255, 255, 0.88),
+    rgba(249, 253, 252, 0.82)
+  );
+  border: 1px solid rgba(15, 118, 110, 0.2);
+  box-shadow: var(--shadow-modern);
+}
+
+.mode-modern input[type="file"],
+.mode-modern input[type="text"] {
+  border: 1.5px solid var(--modern);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.95),
+    rgba(240, 253, 250, 0.9)
+  );
+  box-shadow: inset 0 1px 3px rgba(15, 118, 110, 0.05);
+}
+
+.mode-modern input[type="text"]:focus-visible {
+  border-color: var(--modern-accent);
+  box-shadow:
+    0 0 0 4px rgba(236, 72, 153, 0.15),
+    inset 0 1px 3px rgba(15, 118, 110, 0.05);
+}
+
+.mode-modern button[type="submit"] {
+  background: linear-gradient(135deg, var(--modern), var(--modern-deep));
+  box-shadow: var(--shadow-glow);
+}
+
+.mode-modern button[type="submit"]:hover {
+  box-shadow: 0 0 30px rgba(15, 118, 110, 0.35);
+}
+
+.mode-modern .post {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.98),
+    rgba(240, 253, 250, 0.92)
+  );
+  border: 1px solid rgba(15, 118, 110, 0.15);
+  box-shadow: 0 10px 25px rgba(15, 118, 110, 0.08);
+}
+
+@media (max-width: 720px) {
+  .create-post-section,
+  .feed-section {
+    width: calc(100% - 20px);
+    margin: 16px auto;
+    padding: 18px;
+    border-radius: 14px;
+  }
+
+  button[type="submit"] {
+    width: 100%;
+    justify-self: stretch;
+  }
+}
+
+/* Additional Modern Animations */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* Loading State */
+.loading {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Smooth Transitions */
+* {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+
+/* Focus Visible Polyfill */
+:focus-visible {
+  outline: 2px solid var(--modern);
+  outline-offset: 2px;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Print Styles */
+@media print {
+  body {
+    background: white;
+  }
+  .create-post-section,
+  .feed-section {
+    box-shadow: none;
+    border: 1px solid #ccc;
+    page-break-inside: avoid;
+  }
+}
