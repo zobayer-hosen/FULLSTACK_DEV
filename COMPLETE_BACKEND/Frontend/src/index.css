@@ -63,3 +63,56 @@ html {
   border-radius: 4px;
   cursor: pointer;
 }
+
+
+.feed-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+.post{
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 20px 4px rgba(0, 0, 0, 0.1);
+}
+.post-image {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+.post-caption {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #333;
+}   
+.post-likes {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #777;
+} 
+.post button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+} 
+.post button:hover {
+  background-color: #45a049;
+}
+.post button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+.post button:disabled:hover {
+  background-color: #ccc;
+}
+.post button:disabled:active {
+  background-color: #ccc;
+}  
